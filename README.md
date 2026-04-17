@@ -1,99 +1,189 @@
 👗 CrowBot — Vinted Scraper
 
-<p align="center">
-<img src="https://www.google.com/search?q=https://img.shields.io/badge/Version-2.0.0-purple%3Fstyle%3Dfor-the-badge" alt="Version">
-<img src="https://www.google.com/search?q=https://img.shields.io/badge/Python-3.10%252B-blue%3Fstyle%3Dfor-the-badge" alt="Python">
-<img src="https://www.google.com/search?q=https://img.shields.io/badge/Discord.py-2.3%252B-orange%3Fstyle%3Dfor-the-badge" alt="Discord.py">
-<img src="https://www.google.com/search?q=https://img.shields.io/badge/Status-Stable-success%3Fstyle%3Dfor-the-badge" alt="Status">
-</p>
+L'outil ultime de surveillance Vinted — Rapide, précis et automatisé
 
-🚀 Présentation
+Surveillance Temps Réel • Achat Direct • Filtres Avancés • Multi-Salons • Persistance
 
-CrowBot Vinted est un outil de monitoring ultra-rapide conçu pour détecter les nouvelles annonces Vinted dès leur mise en ligne. Idéal pour le resell ou pour dénicher des pépites avant tout le monde grâce à une réactivité inégalée.
+📖 Table des matières
 
-✨ Fonctionnalités clés
+✨ Présentation
 
-⚡ Ultra Rapide Cycle de scan optimisé toutes les 3 secondes pour ne rater aucune annonce.
+🎯 Fonctionnalités
 
-🛍️ Achat Direct Bouton intégré pour accéder directement à la page de paiement Vinted.
+⚙️ Installation
 
-🏷️ Filtre par Marque Ciblez précisément une marque (Nike, Adidas, Stone Island...) au sein d'une catégorie.
+🔑 Configuration
 
-📋 Multi-Surveillance Gérez plusieurs salons et plusieurs filtres simultanément sur un même serveur.
+🚀 Lancement
 
-💾 Persistance des données Vos surveillances sont sauvegardées et redémarrent automatiquement avec le bot.
+📜 Commandes
 
-🔍 Autocomplete intelligent Système de recherche de catégories fluide via les commandes Slash de Discord.
+💡 Conseils d'utilisation
 
-🛡️ Gestion simplifiée Commandes intuitives pour lister, tester et arrêter les surveillances sans spam.
+❓ FAQ
 
-🛠️ Installation
+✨ Présentation
 
-1️⃣ Prérequis
+CrowBot Vinted Scraper est une extension spécialisée de l'écosystème CrowBot. Ce module est conçu pour les utilisateurs exigeants (resellers, collectionneurs) qui souhaitent être alertés d'une nouvelle annonce avant même qu'elle n'apparaisse dans les recherches classiques sur l'application.
 
-Python 3.10 ou version supérieure.
+⚡ Vitesse de pointe : Cycle de scan toutes les 3 secondes.
 
-Un compte Discord Developer pour générer votre Token.
+💳 Snipe facilité : Boutons d'achat direct pour griller la priorité aux autres acheteurs.
 
-2️⃣ Installation des dépendances
+💾 Zéro perte : Sauvegarde automatique de vos surveillances (résiste aux redémarrages).
 
-Ouvrez votre terminal et exécutez la commande suivante :
+🏷️ Précision chirurgicale : Filtres par catégories officielles et par marques spécifiques.
+
+🎯 Fonctionnalités
+
+Catégorie
+
+Détails
+
+🔍 Scanning
+
+Analyse asynchrone des flux Vinted, gestion des en-têtes Mozilla récents.
+
+🏷️ Filtrage
+
+Support de +50 catégories (Hommes, Femmes, Enfants, Électronique, Maison).
+
+💳 Achat Rapide
+
+Génération de liens de paiement direct (/transaction/buy/new).
+
+🖼️ Notifications
+
+Embeds riches avec prix en couleur selon le montant, photos HD, et compteur de favoris.
+
+🛠️ Gestion
+
+Menu déroulant interactif pour stopper les recherches sans taper de texte.
+
+🔄 Session
+
+Rotation automatique des cookies pour éviter les bannissements d'IP.
+
+⚙️ Installation
+
+Prérequis
+
+Python 3.10+ : Téléchargeable sur python.org.
+
+Discord Token : À récupérer sur le Portail Développeur.
+
+Étape 1 — Préparation
+
+# Clonez ou créez un dossier pour le projet
+mkdir vinted-scraper && cd vinted-scraper
+
+
+Étape 2 — Installer les dépendances
 
 pip install discord.py aiohttp python-dotenv Brotli
 
 
-3️⃣ Configuration
+🔑 Configuration
 
-Créez un fichier .env à la racine de votre projet et ajoutez votre token :
+Créez un fichier .env à la racine :
 
-DISCORD_TOKEN=votre_token_ici
+DISCORD_TOKEN=votre_token_secret_ici
 
 
-🚀 Utilisation
+🚀 Lancement
 
-Lancez le bot avec la commande suivante :
+Dans votre terminal :
 
 python vinted_bot.py
 
 
-📋 Commandes disponibles
+Une fois en ligne :
+
+Utilisez /vinted pour lancer votre première recherche.
+
+Le bot créera un embed de confirmation et commencera le scan immédiatement.
+
+📜 Commandes
+
+🛰️ Surveillance
 
 Commande
 
 Description
 
-`` /vinted
+Permission
 
-Lance une nouvelle surveillance (Catégorie + Salon + Marque).
+/vinted
 
-`` /vinted_list
+Démarrer un scan (Catégorie, Salon, Marque optionnelle)
 
-Liste toutes les surveillances actives sur le serveur.
+Membre
 
-`` /vinted_categories
+/vinted_stop
 
-Affiche la liste complète des catégories supportées.
+Arrêter un scan via un menu déroulant
 
-[Image of /help] /help
+Membre
 
-Affiche le menu d'aide détaillé.
+/vinted_list
 
-💡 Comment ça marche ?
+Voir tous les scans actifs sur le serveur
 
-Système de Catégories : Le bot utilise les catalog_id officiels de Vinted pour une précision chirurgicale.
+Membre
 
-Gestion des Sessions : Récupération automatique des cookies Vinted pour contourner les blocages (rotation de session).
+/vinted_test
 
-Anti-Doublon : Stockage intelligent dans une liste seen_ids pour éviter les notifications répétitives.
+Faire un test rapide (3 articles) sans démarrer de scan
 
-Embeds Premium : Notifications riches incluant prix, état, taille, marque, favoris et image haute résolution.
+Membre
 
-⚠️ Notes importantes
+🛠️ Administration & Aide
 
-🛑 Rate Limiting : L'intervalle est réglé sur 3 secondes. Un nombre excessif de surveillances peut entraîner un blocage temporaire de votre IP par Vinted (Erreur 429).
+Commande
 
-👤 Usage : Ce bot est destiné à un usage personnel ou communautaire. Respectez les conditions d'utilisation de la plateforme.
+Description
+
+Permission
+
+/vinted_stop_all
+
+Arrête absolument tous les scans du serveur
+
+Administrateur
+
+/vinted_categories
+
+Liste toutes les catégories disponibles
+
+Membre
+
+/help
+
+Affiche l'interface d'aide CrowBot
+
+Membre
+
+💡 Conseils d'utilisation
+
+Évitez le spam : Ne lancez pas plus de 5 surveillances simultanées sur la même IP pour éviter le "Rate Limit".
+
+Marques : Soyez précis. Tapez Nike au lieu de nk.
+
+Salons dédiés : Créez un salon par catégorie (ex: #vinted-nike, #vinted-robes) pour une meilleure organisation.
+
+❓ FAQ
+
+Le bot ne poste plus rien ? Vérifiez vos logs. Vinted a peut-être bloqué votre IP temporairement (Erreur 429). Attendez 5 minutes.
+
+Comment ajouter une catégorie ? Les catégories sont codées en dur dans le dictionnaire CATEGORIES. Vous pouvez en ajouter avec leurs IDs Vinted respectifs.
+
+Les boutons ne fonctionnent pas ? Assurez-vous que le bot a la permission "Envoyer des messages" et "Intégrer des liens".
 
 <p align="center">
 <b>Développé pour la performance par l'équipe CrowBot.</b>
+
+
+
+
+<i>Vitesse • Précision • Succès</i>
 </p>
