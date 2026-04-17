@@ -1,189 +1,260 @@
-👗 CrowBot — Vinted Scraper
+🛍️  — Vinted Scraper
 
-L'outil ultime de surveillance Vinted — Rapide, précis et automatisé
+<div align="center">
 
-Surveillance Temps Réel • Achat Direct • Filtres Avancés • Multi-Salons • Persistance
+Surveille les nouvelles annonces Vinted en temps réel directement dans ton serveur Discord.
 
-📖 Table des matières
+</div>
 
-✨ Présentation
+✨ Fonctionnalités
 
-🎯 Fonctionnalités
+🔍 Surveillance en temps réel — Nouvelles annonces détectées toutes les ~8 secondes.
 
-⚙️ Installation
+🏷️ Filtre par marque — Cherche uniquement Nike, Zara, Adidas...
 
-🔑 Configuration
+💰 Filtre par prix — Définit un prix minimum et/ou maximum.
 
-🚀 Lancement
+📦 50+ catégories — Femmes, Hommes, Enfants, Tech, Maison...
 
-📜 Commandes
+💾 Persistance — Les surveillances survivent aux redémarrages (JSON Storage).
 
-💡 Conseils d'utilisation
+🔄 Retry automatique — Relance automatiquement en cas d'erreur réseau.
 
-❓ FAQ
+🛡️ Anti-ban — Rotation de User-Agent + Rate limiting intelligent.
 
-✨ Présentation
+📊 Statistiques — Suivi du nombre d'articles envoyés par surveillance.
 
-CrowBot Vinted Scraper est une extension spécialisée de l'écosystème CrowBot. Ce module est conçu pour les utilisateurs exigeants (resellers, collectionneurs) qui souhaitent être alertés d'une nouvelle annonce avant même qu'elle n'apparaisse dans les recherches classiques sur l'application.
+🎛️ Multi-surveillance — Jusqu'à 10 surveillances simultanées par serveur.
 
-⚡ Vitesse de pointe : Cycle de scan toutes les 3 secondes.
+📸 Aperçu
 
-💳 Snipe facilité : Boutons d'achat direct pour griller la priorité aux autres acheteurs.
+┌─────────────────────────────────────────────┐
+│ 🛍️ Nike Air Max 90 — Taille 42              │
+│ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│ ## 35 €                                     │
+│                                             │
+│ 👤 Vendeur      💶 Prix         🏷️ Marque    │
+│ john_doe       35 €            Nike         │
+│                                             │
+│ 📏 Taille       ✨ État         ❤️ Favoris   │
+│ 42             Bon état        12           │
+│                                             │
+│ [🛍️ Voir l'article] [💳 Acheter]             │
+│ [📋 Copier les liens]                        │
+└─────────────────────────────────────────────┘
 
-💾 Zéro perte : Sauvegarde automatique de vos surveillances (résiste aux redémarrages).
 
-🏷️ Précision chirurgicale : Filtres par catégories officielles et par marques spécifiques.
-
-🎯 Fonctionnalités
-
-Catégorie
-
-Détails
-
-🔍 Scanning
-
-Analyse asynchrone des flux Vinted, gestion des en-têtes Mozilla récents.
-
-🏷️ Filtrage
-
-Support de +50 catégories (Hommes, Femmes, Enfants, Électronique, Maison).
-
-💳 Achat Rapide
-
-Génération de liens de paiement direct (/transaction/buy/new).
-
-🖼️ Notifications
-
-Embeds riches avec prix en couleur selon le montant, photos HD, et compteur de favoris.
-
-🛠️ Gestion
-
-Menu déroulant interactif pour stopper les recherches sans taper de texte.
-
-🔄 Session
-
-Rotation automatique des cookies pour éviter les bannissements d'IP.
-
-⚙️ Installation
+🚀 Installation
 
 Prérequis
 
-Python 3.10+ : Téléchargeable sur python.org.
+Python 3.11 ou supérieur.
 
-Discord Token : À récupérer sur le Portail Développeur.
+Un bot Discord avec les permissions nécessaires.
 
-Étape 1 — Préparation
+Un Token Discord.
 
-# Clonez ou créez un dossier pour le projet
-mkdir vinted-scraper && cd vinted-scraper
+1. Cloner le projet
+
+git clone [https://github.com/ton-user/crowbot-vinted.git](https://github.com/ton-user/crowbot-vinted.git)
+cd crowbot-vinted
 
 
-Étape 2 — Installer les dépendances
+2. Installer les dépendances
 
 pip install discord.py aiohttp python-dotenv Brotli
 
 
-🔑 Configuration
+Ou via le fichier requirements :
 
-Créez un fichier .env à la racine :
-
-DISCORD_TOKEN=votre_token_secret_ici
+pip install -r requirements.txt
 
 
-🚀 Lancement
+3. Configurer le fichier .env
 
-Dans votre terminal :
+Crée un fichier .env à la racine du projet :
+
+DISCORD_TOKEN=ton_token_discord_ici
+
+
+💡 Où trouver ton token ? Rendez-vous sur le Discord Developer Portal, crée une application → Bot → Reset Token.
+
+4. Lancer le bot
 
 python vinted_bot.py
 
 
-Une fois en ligne :
+📁 Structure du projet
 
-Utilisez /vinted pour lancer votre première recherche.
+crowbot-vinted/
+│
+├── vinted_bot.py          # Bot principal
+├── vinted_watchers.json   # Données persistantes (auto-généré)
+├── vinted_bot.log         # Logs (auto-généré)
+├── .env                   # Token Discord (à créer)
+├── requirements.txt       # Dépendances
+└── README.md              # Ce fichier
 
-Le bot créera un embed de confirmation et commencera le scan immédiatement.
 
-📜 Commandes
+⚙️ Configuration
 
-🛰️ Surveillance
+Les constantes configurables se trouvent en haut de vinted_bot.py :
+
+Constante
+
+Défaut
+
+Description
+
+SCRAPE_INTERVAL
+
+8
+
+Secondes entre chaque cycle de scraping
+
+REQUEST_DELAY
+
+1.5
+
+Délai minimum entre chaque requête Vinted
+
+MAX_RETRIES
+
+3
+
+Tentatives avant abandon sur erreur réseau
+
+COOKIE_TTL
+
+300
+
+Durée de vie du cookie en secondes
+
+MAX_SEEN_IDS
+
+300
+
+Nombre d'IDs mémorisés par surveillance
+
+MAX_WATCHERS_GUILD
+
+10
+
+Surveillances simultanées max par serveur
+
+🎮 Commandes
 
 Commande
 
 Description
 
-Permission
+Permissions
 
 /vinted
 
-Démarrer un scan (Catégorie, Salon, Marque optionnelle)
+Démarrer une surveillance
 
-Membre
+Tout le monde
 
 /vinted_stop
 
-Arrêter un scan via un menu déroulant
+Arrêter une surveillance (menu)
 
-Membre
-
-/vinted_list
-
-Voir tous les scans actifs sur le serveur
-
-Membre
-
-/vinted_test
-
-Faire un test rapide (3 articles) sans démarrer de scan
-
-Membre
-
-🛠️ Administration & Aide
-
-Commande
-
-Description
-
-Permission
+Tout le monde
 
 /vinted_stop_all
 
-Arrête absolument tous les scans du serveur
+Arrêter toutes les surveillances
 
 Administrateur
 
+/vinted_list
+
+Voir les surveillances actives
+
+Tout le monde
+
+/vinted_stats
+
+Statistiques du scraper
+
+Tout le monde
+
 /vinted_categories
 
-Liste toutes les catégories disponibles
+Voir toutes les catégories
 
-Membre
+Tout le monde
+
+/vinted_test
+
+Tester une catégorie (aperçu)
+
+Tout le monde
 
 /help
 
-Affiche l'interface d'aide CrowBot
+Aide et informations
 
-Membre
+Tout le monde
 
-💡 Conseils d'utilisation
+Détail des options /vinted
 
-Évitez le spam : Ne lancez pas plus de 5 surveillances simultanées sur la même IP pour éviter le "Rate Limit".
+categorie (Texte) : ✅ Catégorie Vinted (autocomplétion)
 
-Marques : Soyez précis. Tapez Nike au lieu de nk.
+salon (Salon) : ✅ Salon Discord de destination
 
-Salons dédiés : Créez un salon par catégorie (ex: #vinted-nike, #vinted-robes) pour une meilleure organisation.
+marque (Texte) : ❌ Filtrer par marque (ex: Nike)
 
-❓ FAQ
+prix_min (Nombre) : ❌ Prix minimum en €
 
-Le bot ne poste plus rien ? Vérifiez vos logs. Vinted a peut-être bloqué votre IP temporairement (Erreur 429). Attendez 5 minutes.
+prix_max (Nombre) : ❌ Prix maximum en €
 
-Comment ajouter une catégorie ? Les catégories sont codées en dur dans le dictionnaire CATEGORIES. Vous pouvez en ajouter avec leurs IDs Vinted respectifs.
+🛡️ Sécurité & Anti-ban
 
-Les boutons ne fonctionnent pas ? Assurez-vous que le bot a la permission "Envoyer des messages" et "Intégrer des liens".
+Le bot intègre plusieurs mécanismes pour éviter les blocages :
 
-<p align="center">
-<b>Développé pour la performance par l'équipe CrowBot.</b>
+┌─────────────────────────────────────────────────────┐
+│               Mécanismes Anti-ban                    │
+├─────────────────┬───────────────────────────────────┤
+│ User-Agent Pool │ 6 navigateurs différents en        │
+│                 │ rotation aléatoire                 │
+├─────────────────┼───────────────────────────────────┤
+│ Rate Limiting   │ 1.5s minimum entre chaque requête │
+├─────────────────┼───────────────────────────────────┤
+│ Backoff expo.   │ Délai croissant sur erreurs        │
+│                 │ répétées (max 30s)                 │
+├─────────────────┼───────────────────────────────────┤
+│ Cookie TTL      │ Renouvellement auto toutes les 5mn │
+├─────────────────┼───────────────────────────────────┤
+│ 429 Handler     │ Pause automatique si rate limited  │
+└─────────────────┴───────────────────────────────────┘
 
 
+🐛 Dépannage
 
+<details>
+<summary><b>❌ "DISCORD_TOKEN manquant dans .env"</b></summary>
+Assure-toi que le fichier .env existe à la racine, contient bien la variable sans espaces autour du =.
+</details>
 
-<i>Vitesse • Précision • Succès</i>
-</p>
+<details>
+<summary><b>❌ Les commandes slash n'apparaissent pas</b></summary>
+La synchronisation peut prendre jusqu'à 1 heure. Redémarrez votre client Discord.
+</details>
+
+<details>
+<summary><b>⚠️ Aucun article ne s'affiche</b></summary>
+Utilisez /vinted_test. Si rien ne sort, Vinted a peut-être bloqué votre IP temporairement (Erreur 429).
+</details>
+
+⚖️ Avertissement légal
+
+Ce projet est développé à des fins éducatives uniquement. L'utilisation d'un scraper peut être contraire aux CGU de Vinted. Utilisez ce bot de manière responsable.
+
+<div align="center">
+
+Fait avec ❤️ par PoudreuxFeu
+⭐ Si ce projet t'a aidé, laisse une étoile ! ⭐
+
+</div>
