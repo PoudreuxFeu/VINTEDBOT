@@ -53,8 +53,8 @@
 ### 1. Cloner le projet
 
 ```bash
-git clone https://github.com/ton-user/crowbot-vinted.git
-cd crowbot-vinted
+git clone https://github.com/PoudreuxFeu/VINTEDBOT.git
+cd VINTEDBOT
 ```
 
 ### 2. Installer les dépendances
