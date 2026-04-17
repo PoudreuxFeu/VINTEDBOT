@@ -81,9 +81,7 @@ python vinted_bot.py
 
 ```text
 crowbot-vinted/
-├── vinted_bot.py
-├── vinted_watchers.json
-├── vinted_bot.log
+├── bot.py
 ├── .env
 ├── requirements.txt
 └── README.md
